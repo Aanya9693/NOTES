@@ -21,23 +21,21 @@ bool detect_bfs(int start, int n, vector<int>adj[]){
                 vis[it]=1;
                 q.push({it, node});
             }else if(parent != it){
-                return true;
+            	return true;
             }
         }
     }
     return false;
 }
 
-bool detect_dfs(int node, int parent, int vis[], vector<int>adj[]){
+void dfs(int node, int vis[], vector<int>adj[], vector<int>& ansdfs){
     vis[node]=1;
+    ansdfs.push_back(node);
     
     for(auto it:adj[node]){
         if(!vis[it]){
-            if(detect_dfs(it, node, vis, adj)){
-                return true;
-            }
-        }else if(it!=parent){
-            return true;
+            dfs(it, vis, adj, ansdfs);
+            // vis[it]=1;
         }
     }
 }
@@ -66,13 +64,15 @@ int main(){
     cout << "Cycle using BFS Traversal: ";
     cout <<ans;
     cout<<endl;
-    // ----running dfs
-    int vis[n]={0};
+    //----running dfs
+    // int vis[n]={0};
+    // vector<int>ansdfs;
+    // dfs(0, vis, adj, ansdfs);
     
-    bool dfs_ans = detect_dfs(0, -1, vis, adj);
-    
-    cout << "Cycle using DFS Traversal: ";
-    cout<<dfs_ans<<endl;
+    // cout << "DFS Traversal: ";
+    // for (int i : ansdfs) {
+    //     cout << i << " ";
+    // }
     return 0;
 }
 
