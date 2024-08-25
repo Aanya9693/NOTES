@@ -1,0 +1,32 @@
+# Initialiser List
+
+
+## Initializer List Constructor
+An initializer list constructor initializes member variables before the body of the constructor is executed. 
+This approach is often more efficient, especially for initializing constants or reference members, 
+and for initializing members with non-default constructors.
+
+
+#include <iostream>
+#include <string>
+
+class BankAccount {
+private:
+    string accountNumber;
+    int balance;
+
+public:
+    // Initializer list constructor
+    BankAccount(string accNum, int bal)
+        : accountNumber(accNum), balance(bal) {}
+
+    void checkBalance() const {
+        cout << "Balance: " << balance << endl;
+    }
+};
+
+int main() {
+    BankAccount account("123456789", 1000);
+    account.checkBalance();
+    return 0;
+}
