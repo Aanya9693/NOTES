@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+/*
+
+Operator Overloading Function: The operator+ function is defined to overload the + operator for the Point class.
+
+It takes one parameter, const Point& p, which is another Point object.
+It creates a new Point object, temp, and sets its x and y coordinates by adding the x and y coordinates of this (the current object) and p (the object passed to the function).
+Finally, it returns temp, which is the sum of the two points.
+
+*/
+
+class Point{
+    int x, y;
+public:
+    //constructor to initialise point coordintes
+    Point(int xVal = 0, int yVal = 0): x(xVal), y(yVal){}
+    
+    //overloading the '+' operator
+    Point operator + (const Point& p){
+        Point temp;
+        temp.x = x + p.x; //add x coordinates
+        temp.y = y + p.y; // add y coordinates
+        return temp;
+    }
+    
+    //function to display the point 
+    void display() const {
+        cout<<"("<<x<<", "<<y<<")"<<endl;
+    }
+};
+
+int main(){
+    Point p1(2, 3); //first point (2, 3)
+    Point p2(4, 5);  //second point (4, 5)
+    
+    Point p3 = p1 + p2; //using overloaded '+' operator
+    
+    p3.display(); //output: (6, 8)
+    
+    return 0;
+}
