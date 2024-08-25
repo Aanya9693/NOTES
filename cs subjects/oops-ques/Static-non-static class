@@ -1,0 +1,32 @@
+In C++, methods and functions can be categorized as static or non-static based on how they are associated with class instances.
+## Static Methods and Functions
+Definition: Static methods belong to the class itself rather than any particular instance of the class. 
+They can be called without creating an instance of the class.
+
+## Non-Static Methods and Functions
+Definition: Non-static methods (or instance methods) are associated with a specific instance of a class. 
+They can access and modify instance-specific data (non-static members).
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class MathUtils {
+public:
+    int add(int a, int b) { // Static method
+        return a + b;
+    }
+
+    static int subtract(int a, int b) { // Static method
+        return a - b;
+    }
+};
+
+int main() {
+    MathUtils obj;
+    int sum = obj.add(5, 3); // Calling static method using class name
+    int difference = MathUtils::subtract(5, 3); // Calling static method using class name
+
+    cout<<"Sum: "<<sum<<endl;
+    cout << "Difference: " << difference << endl; // Output: Difference: 2
+    return 0;
+}
