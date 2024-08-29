@@ -8,6 +8,7 @@ public:
         parent.resize(n+1);
         size.resize(n+1); 
         for(int i = 0;i<=n;i++) {
+            //initially each node will parent of themselves
             parent[i] = i; 
             size[i] = 1; 
         }
@@ -22,6 +23,7 @@ public:
     void unionByRank(int u, int v) {
         int ulp_u = findUPar(u); 
         int ulp_v = findUPar(v); 
+        //if ultimate parent of u == ultimate parent of v means both belongs to same component 
         if(ulp_u == ulp_v) return; 
         if(rank[ulp_u] < rank[ulp_v]) {
             parent[ulp_u] = ulp_v; 
@@ -30,6 +32,8 @@ public:
             parent[ulp_v] = ulp_u; 
         }
         else {
+            //if rank of both node is equal we can attach any to any
+            //and now need to increase the rank to which we are attaching
             parent[ulp_v] = ulp_u; 
             rank[ulp_u]++; 
         }
@@ -51,6 +55,7 @@ public:
 }; 
 int main() {
     DisjointSet ds(7);
+    //union means joining two nodes
     ds.unionBySize(1, 2); 
     ds.unionBySize(2, 3); 
     ds.unionBySize(4, 5); 
